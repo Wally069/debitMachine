@@ -212,7 +212,7 @@ void my_touchpad_read( lv_indev_drv_t * indev_driver, lv_indev_data_t * data )
 
 void setup()
 {
-    Serial.begin(115200); // Initialize serial communications with the PC
+    // Serial.begin(115200); // Initialize serial communications with the PC
     // while (!Serial); // Do nothing if no serial port is opened (added for Arduinos based on ATMEGA32U4)
     SPI.begin(); // Init SPI bus
     // mfrc522.PCD_Init(); // Init MFRC522
@@ -222,8 +222,8 @@ void setup()
     String LVGL_Arduino = "Hello Arduino! ";
     LVGL_Arduino += String('V') + lv_version_major() + "." + lv_version_minor() + "." + lv_version_patch();
 
-    Serial.println( LVGL_Arduino );
-    Serial.println( "I am LVGL_Arduino" );
+    // Serial.println( LVGL_Arduino );
+    // Serial.println( "I am LVGL_Arduino" );
 
     lv_init();
 
@@ -232,9 +232,9 @@ void setup()
     #endif
 
     tft.begin();          /* TFT init */
-    tft.setRotation( 2 ); /* Landscape orientation, flipped */
+    tft.setRotation( 0 ); /* Landscape orientation, flipped */
     
-    uint16_t calData[5] = { 375, 3384, 490, 3387, 2 };
+     uint16_t calData[5] = { 290, 3446, 394, 3486, 4 };
     tft.setTouch(calData);
 
     lv_disp_draw_buf_init( &draw_buf, buf, NULL, screenWidth * screenHeight / 10 );
@@ -259,7 +259,7 @@ void setup()
 
     ui_init();
 
-    Serial.println( "Setup done" );
+    // Serial.println( "Setup done" );
 
     mfrc522.PCD_Init();		// Init MFRC522
 
@@ -268,7 +268,7 @@ void setup()
 
 	delay(4);				// Optional delay. Some board do need more time after init to be ready, see Readme
 	mfrc522.PCD_DumpVersionToSerial();	// Show details of PCD - MFRC522 Card Reader details
-	Serial.println(F("Scan PICC to see UID, SAK, type, and data blocks..."));
+	// Serial.println(F("Scan PICC to see UID, SAK, type, and data blocks..."));
 }
 
 void loop() {
